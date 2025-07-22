@@ -1,0 +1,84 @@
+Project: Medical Appointment Booking System
+A system that allows:
+i)Patients to register, log in, book appointments with doctors.
+ii)Doctors/Admins to log in, view and approve/reject appointments.
+iii)Email notifications and appointment history tracking.
+1. Waterfall Model:
+Description:
+A linear and phase-by-phase model where each phase must be completed before moving to the next.
+How it fits my project:
+i)I already know the full requirements: roles, forms, flows.
+ii) I can follow a step-by-step process: 
+Requirements → Design → Implementation → Testing → Deployment.
+Advantages:
+i)Easy to manage and plan.
+ii)Ideal for small academic projects with clear goals and short timelines.
+Limitations:
+i)Not flexible to changes once coding starts.
+ii)Late discovery of issues (after testing).
+
+
+
+
+2. Spiral Model:
+Description:
+A risk-driven, iterative model that cycles through planning, risk analysis, development, and evaluation.
+How it fits my project:
+i)I can break my system into cycles:
+->1st Spiral: Login & Registration
+->2nd Spiral: Booking system
+->3rd Spiral: Approval mechanism
+->4th Spiral: Email & history tracking
+Advantages:
+i)I can identify risks early (e.g., email delivery, appointment conflicts).
+ii)Continuous refinement.
+Limitations:
+i)Slightly complex for small projects.
+ii)Requires planning and documentation per cycle.
+3. Incremental Model:
+ Description:
+Software is developed in small, working increments — each adding new functionality.
+How it fits my project:
+i)I can build and deliver features in parts:
+
+->Registration/Login
+-> Booking form
+->Doctor approval
+-> Email + history
+Advantages:
+i)Early partial versions available for review.
+ii)Easier to test and debug.
+Limitations:
+I must design the full system architecture upfront.
+4. Prototype Model:
+ Description:
+Focuses on building a prototype first to understand user requirements better.
+How it fits my project:
+i)I could create a quick HTML interface for:
+->Booking form
+->Dashboard layout
+Advantages:
+i)Immediate feedback.
+ii)Helpful if the users are not sure what they want.
+Limitations:
+May lead to unrealistic expectations if the prototype looks “finished”.
+
+
+5. Agile Model (Scrum-style):
+Description:
+A flexible, iterative model using short development cycles (sprints), with continuous feedback and adaptation.
+How it fits my project:
+i)I can split my work into weekly sprints:
+->Sprint 1: Setup & login
+->Sprint 2: Booking logic
+->Sprint 3: Admin approval
+->Sprint 4: Testing, notifications
+ Advantages:
+i)Flexible to changes.
+ii)Continuous feedback.
+ Limitations:
+i)Requires regular meetings/reviews.
+ii)May be too much overhead for solo developers.
+
+
+
