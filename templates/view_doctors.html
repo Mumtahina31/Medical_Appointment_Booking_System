@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Available Doctors</title></head>
+<body>
+  <h1>Available Doctors</h1>
+  <ul>
+    {% for doc in doctors %}
+      <li>{{ doc.username }} - <a href="{{ url_for('book_appointment', doctor_id=doc.id) }}">Book Appointment</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
