@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Book Appointment with {{ doctor.username }}</title></head>
+<body>
+  <h1>Book Appointment with Dr. {{ doctor.username }}</h1>
+  <form method="POST">
+    <label>Date: <input type="date" name="date" required></label><br/>
+    <button type="submit">Book</button>
+  </form>
+  <a href="{{ url_for('view_doctors') }}">Back to Doctors</a>
+</body>
+</html>
