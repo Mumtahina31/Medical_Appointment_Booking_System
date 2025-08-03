@@ -3,92 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ role.capitalize() }} Login</title>
+    <title>Medical Portal Login</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary: #4361ee;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --dark: #212529;
         }
-
-        .container {
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-card {
+            background: white;
+            width: 100%;
             max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .login-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px;
             text-align: center;
         }
-
-        h1 {
-            color: #333;
+        .login-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .login-header .role-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 8px;
         }
-
-        button {
+        .login-form {
+            padding: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .input-group input {
             width: 100%;
-            padding: 10px;
-            background-color: #5cb85c;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .input-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
         }
-
-        button:hover {
-            background-color: #4cae4c;
+        .login-btn:hover {
+            background: #3a56d4;
+            transform: translateY(-2px);
         }
-
-        .error {
-            color: red;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+        .footer-links {
             text-align: center;
+            margin-top: 20px;
         }
-
-        a {
-            display: block;
-            margin-top: 15px;
+        .footer-links a {
+            color: #6c757d;
             text-decoration: none;
-            color: #007bff;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
-
-        a:hover {
-            text-decoration: underline;
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .error-message {
+            color: var(--danger);
+            background: rgba(247, 37, 133, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .error-message:before {
+            content: "⚠";
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>{{ role.capitalize() }} Login</h1>
-
-    {% if error %}
-        <div class="error">
-            {{ error }}
+    <div class="login-card">
+        <div class="login-header">
+            <h1>Medical Portal</h1>
         </div>
-    {% endif %}
-
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required /><br/>
-        <input type="password" name="password" placeholder="Password" required /><br/>
-        <button type="submit">Login</button>
-    </form>
-
-    <a href="{{ url_for('index') }}">Back to Home</a>
-</div>
-
+        
+        
+            
+            <form method="POST">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" 
+                           placeholder="Enter your username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" 
+                           placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="login-btn">SIGN IN</button>
+            </form>
+            
+            <div class="footer-links">
+                <a href="{{ url_for('index') }}">← Back to Home</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

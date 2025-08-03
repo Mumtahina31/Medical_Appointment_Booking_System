@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head><title>Book Appointment with {{ doctor.username }}</title></head>
+<head>
+    <title>Book Appointment</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        form { max-width: 400px; }
+        label { display: block; margin: 10px 0; }
+        input { padding: 8px; width: 100%; }
+    </style>
+</head>
 <body>
-  <h1>Book Appointment with Dr. {{ doctor.username }}</h1>
-  <form method="POST">
-    <label>Date: <input type="date" name="date" required></label><br/>
-    <button type="submit">Book</button>
-  </form>
-  <a href="{{ url_for('view_doctors') }}">Back to Doctors</a>
+    <h1>Book Appointment with Dr. {{ doctor.full_name }}</h1>
+    <form method="POST">
+        <label>Date: <input type="date" name="date" required></label>
+        <label>Time: <input type="time" name="time" required></label>
+        <button type="submit">Book Appointment</button>
+    </form>
+    <p><a href="{{ url_for('view_doctors') }}">Back to Doctors</a></p>
 </body>
 </html>

@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head><title>My Appointments</title></head>
+<head>
+    <title>My Appointments</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
 <body>
-  <h1>My Appointments</h1>
-  <ul>
-    {% for appt in appointments %}
-      <li>Patient ID: {{ appt.patient_id }}, Date: {{ appt.date }}, Status: {{ appt.status }}</li>
-    {% else %}
-      <li>No appointments yet.</li>
-    {% endfor %}
-  </ul>
-  <a href="{{ url_for('logout') }}">Logout</a>
+    <h1>My Appointments</h1>
+    <table>
+        <tr>
+            <th>Patient</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        {% for appt, patient in appointments %}
+        <tr>
+            <td>{{ patient.full_name }}</td>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+            <td>{{ appt.status }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No appointments yet.</td></tr>
+        {% endfor %}
+    </table>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
 </body>
 </html>

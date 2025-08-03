@@ -1,12 +1,167 @@
 <!DOCTYPE html>
-<html>
-<head><title>Appointment Status</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Status</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .status-card {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .status-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        .status-header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .status-body {
+            padding: 30px;
+        }
+        .status-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .status-label {
+            width: 120px;
+            font-weight: 600;
+            color: var(--gray);
+        }
+        .status-value {
+            flex: 1;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .status-pending {
+            background: rgba(248, 150, 30, 0.1);
+            color: var(--warning);
+        }
+        .status-confirmed {
+            background: rgba(76, 201, 240, 0.1);
+            color: var(--success);
+        }
+        .status-cancelled {
+            background: rgba(247, 37, 133, 0.1);
+            color: var(--danger);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #3a56d4;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: white;
+            color: var(--gray);
+            border: 1px solid #dee2e6;
+        }
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: var(--gray);
+        }
+    </style>
+</head>
 <body>
-  <h1>Appointment Status</h1>
-  <p>Doctor: {{ appointment.doctor_id }}</p>
-  <p>Date: {{ appointment.date }}</p>
-  <p>Status: {{ appointment.status }}</p>
-  <a href="{{ url_for('view_doctors') }}">Back to Doctors</a>
-  <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="status-card">
+        <div class="status-header">
+            <h1>Appointment Status</h1>
+        </div>
+        
+        <div class="status-body">
+            <div class="status-item">
+                <div class="status-label">Appointment ID</div>
+                <div class="status-value">#{{ appointment.id }}</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-label">
+                    {% if session.role == 'patient' %}Doctor{% else %}Patient{% endif %}
+                </div>
+                <div class="status-value">{{ other_user.username }}</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-label">Date</div>
+                <div class="status-value">{{ appointment.date }}</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-label">Time</div>
+                <div class="status-value">{{ appointment.time }}</div>
+            </div>
+            
+            <div class="status-item">
+                <div class="status-label">Status</div>
+                <div class="status-value">
+                    <span class="status-badge status-{{ appointment.status.lower() }}">
+                        {{ appointment.status }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                {% if session.role == 'patient' %}
+                    <a href="{{ url_for('view_doctors') }}" class="btn btn-primary">Back to Doctors</a>
+                {% else %}
+                    <a href="{{ url_for('doctor_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+                {% endif %}
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
